@@ -59,7 +59,7 @@ const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems
         <input
           type="text"
           name="itemPart"
-          placeholder="Item Part (Optional)"
+          placeholder="Custom Additions"
           value={data.itemPart}
           onChange={onChangeHandler}
           className="w-full p-2 border border-gray-300 rounded-lg"
@@ -67,7 +67,7 @@ const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems
         <input
           type="text"
           name="itemName"
-          placeholder="Item Name"
+          placeholder="Options"
           value={data.itemName}
           onChange={onChangeHandler}
           className="w-full p-2 border border-gray-300 rounded-lg"
@@ -97,8 +97,8 @@ const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems
           <table className="w-full table-auto">
             <thead>
               <tr className="text-left bg-gray-100">
-                <th className="p-2">Item Part</th>
-                <th className="p-2">Item Name</th>
+                <th className="p-2">Custom Additions</th>
+                <th className="p-2">Options</th>
                 <th className="p-2">Price</th>
                 <th className="p-2">Actions</th>
               </tr>

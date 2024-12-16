@@ -3,10 +3,14 @@ import { assets } from "../../assets/assets";
 import CustomizedFoodItems from "./CustomizedFoodItems";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+import CustomPopup from "../../components/Common/CustomPopup";
 
 const AddItems = () => {
   const url = "http://localhost:3001";
   const navigate = useNavigate();
+
+  const [showPopup, setShowPopup] = useState(false);
 
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
@@ -17,8 +21,7 @@ const AddItems = () => {
     deliveryFee: "",
     deliveryDuration: "20",
     customizedItems: [],
-    
-    });
+  });
 
   // State for customized items array
   const [customizedItems, setCustomizedItems] = useState([]);
@@ -37,12 +40,6 @@ const AddItems = () => {
     console.log("Customized Items: ", customizedItems);
   }, [customizedItems]);
 
-
-//   const customizedItems = [
-//     { itemPart: "Cheese", itemName: "Mozzarella", itemPrice: 200 },
-//     { itemPart: "Topping", itemName: "Olives", itemPrice: 150 }
-// ]
-
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -56,13 +53,12 @@ const AddItems = () => {
     // Append customized items array to formData
     formData.append("customizedItems", JSON.stringify(customizedItems));
 
-    
     // Submit to API
     try {
       const response = await axios.post(`${url}/api/food/add`, formData, {
         headers: { "Content-Type": "multipart/form-data" }, // Required for FormData
       });
-  
+
       if (response.data.success) {
         setData({
           name: "",
@@ -76,18 +72,22 @@ const AddItems = () => {
         setImage(false);
         setCustomizedItems([]);
 
-        alert("Food item added successfully!");
+        toast.success(response.data.message);
+
+        setShowPopup(true);
+        
         // Reload route
-        navigate(0);
+        setTimeout(() => {
+          navigate(0);
+        }, 1000); // 5000ms = 5 seconds
+      } else {
+        toast.error(response.data.message);
       }
+
     } catch (error) {
       console.error("Error adding product:", error);
     }
-    
   };
-
-
-
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4 bg-white">
@@ -258,6 +258,12 @@ const AddItems = () => {
             >
               Add Product
             </button>
+            {/* Custom Popup */}
+            <CustomPopup
+              message="Food item added successfully!"
+              show={showPopup}
+              onClose={() => setShowPopup(false)}
+            />
           </div>
         </form>
       </div>

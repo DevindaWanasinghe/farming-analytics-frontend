@@ -10,11 +10,15 @@ import Revenue from "./pages/Revenue/Revenue";
 import AdminManage from "./pages/AdminManage/AdminManage";
 import CustomUpdate from "./pages/CustomUpdate/CustomUpdate";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const App = () => {
   return (
     <div className="">
+      <ToastContainer/>
       <Navbar />
       <div className="flex bg-white">
         <Sidebar />
