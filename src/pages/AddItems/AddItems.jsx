@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import CustomPopup from "../../components/Common/CustomPopup";
+import OfferSection from "./OfferSection";
 
 const AddItems = () => {
   const url = "http://localhost:3001";
@@ -20,7 +21,11 @@ const AddItems = () => {
     category: "Pizza",
     deliveryFee: "",
     deliveryDuration: "20",
+    hasOffer: false,
+    discountPercentage: 0,
+    discountPrice: 0,
     customizedItems: [],
+    totalPrice: 0,
   });
 
   // State for customized items array
@@ -36,9 +41,22 @@ const AddItems = () => {
   //   console.log(data);
   // }, [data]);
 
-  useEffect(() => {
-    console.log("Customized Items: ", customizedItems);
-  }, [customizedItems]);
+  // Function to update discount details
+  const handleDiscountChange = (percentage, price) => {
+    setData((prevData) => ({
+      ...prevData,
+      discountPercentage: percentage,
+      discountPrice: price,
+    }));
+  };
+
+  // useEffect(() => {
+  //   console.log("Customized Items: ", customizedItems);
+  // }, [customizedItems]);
+
+  // useEffect(() => {
+  //   console.log("Total Price from child:", data.totalPrice);
+  // }, [data.totalPrice]);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -49,14 +67,18 @@ const AddItems = () => {
     formData.append("category", data.category);
     formData.append("deliveryFee", Number(data.deliveryFee));
     formData.append("deliveryDuration", Number(data.deliveryDuration));
+    formData.append("hasOffer", data.hasOffer ? "true" : "false");
+    formData.append("discountPercentage", data.discountPercentage);
+    formData.append("discountPrice", data.discountPrice);
     formData.append("image", image);
     // Append customized items array to formData
     formData.append("customizedItems", JSON.stringify(customizedItems));
+    formData.append("totalPrice", Number(data.totalPrice));
 
     // Submit to API
     try {
       const response = await axios.post(`${url}/api/food/add`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }, // Required for FormData
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       if (response.data.success) {
@@ -67,7 +89,11 @@ const AddItems = () => {
           category: "Pizza",
           deliveryFee: "",
           deliveryDuration: "20",
+          hasOffer: false,
+          discountPercentage: 0,
+          discountPrice: 0,
           customizedItems: [],
+          totalPrice: 0,
         });
         setImage(false);
         setCustomizedItems([]);
@@ -75,7 +101,7 @@ const AddItems = () => {
         toast.success(response.data.message);
 
         setShowPopup(true);
-        
+
         // Reload route
         setTimeout(() => {
           navigate(0);
@@ -83,7 +109,6 @@ const AddItems = () => {
       } else {
         toast.error(response.data.message);
       }
-
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -92,11 +117,9 @@ const AddItems = () => {
   return (
     <div className="flex items-center justify-center min-h-screen p-4 bg-white">
       {/* Outer Container */}
-      <div className="w-full h-screen max-w-6xl px-8 py-6 overflow-auto bg-white rounded-lg shadow-lg">
+      <div className="w-full h-screen max-w-6xl overflow-auto bg-white rounded-lg ">
         {/* Form Header */}
-        <h2 className="mb-6 text-3xl font-semibold text-center text-gray-700">
-          Add New Product
-        </h2>
+        <p className='2xl:text-[27px] text-[24px] text-[#FF4C00] font-bold'>Add New Product</p>
 
         {/* Form Section */}
 
@@ -158,6 +181,19 @@ const AddItems = () => {
                 required
               ></textarea>
             </div>
+
+
+            {/* Offer Section */}
+            <OfferSection
+              price={data.price}
+              hasOffer={data.hasOffer} // Pass parent state
+              setHasOffer={(value) =>
+                setData((prevData) => ({ ...prevData, hasOffer: value }))
+              } // Update parent state
+              onDiscountChange={handleDiscountChange}
+            />
+
+            
           </div>
 
           {/* Right Section */}
@@ -240,13 +276,17 @@ const AddItems = () => {
               </div>
             </div>
 
+            
+
             {/* Customized Food Items */}
             <CustomizedFoodItems
               data={data}
               setData={setData}
               customizedItems={customizedItems}
               setCustomizedItems={setCustomizedItems}
-              // apiUrl={url}
+              price={data.price}
+              discountPercentage={data.discountPercentage}
+              // setTotalPrice={(finalPrice) => setData((prevData) => ({ ...prevData, totalPrice: finalPrice }))}
             />
           </div>
 

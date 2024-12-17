@@ -1,17 +1,24 @@
-// import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 //import axios from "axios";
 
-const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems }) => {
+const CustomizedFoodItems = ({
+  data,
+  setData,
+  customizedItems,
+  setCustomizedItems,
+  price,
+  discountPercentage,
+}) => {
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleAddItem = async () => {
-    if (data.itemName.trim() && data.itemPrice.trim()) {
+    if (data.itemName && data.itemName.trim() && data.itemPrice && data.itemPrice.trim()) {
       const newItem = {
         itemPart: data.itemPart || "-",
         itemName: data.itemName,
@@ -19,9 +26,6 @@ const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems
       };
 
       try {
-        // Send this item to the same API URL
-        // await axios.post(`${apiUrl}/api/food/add`, newItem);
-
         // Update local state
         setCustomizedItems((prevItems) => [...prevItems, newItem]);
 
@@ -35,6 +39,8 @@ const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems
       } catch (error) {
         console.error("Error sending item to API:", error);
       }
+    } else {
+      alert("Item name and price are required!");
     }
   };
 
@@ -42,13 +48,29 @@ const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems
     setCustomizedItems((prevItems) => prevItems.filter((_, i) => i !== index));
   };
 
-  
-    // useEffect(() => {
-    //   console.log("Customized Items: ", customizedItems);
-    // }, [customizedItems]);
+  // useEffect(() => {
+  //   console.log("Customized Items: ", customizedItems);
+  // }, [customizedItems]);
 
+  // Calculate total price
+  useEffect(() => {
+    const basePrice = Number(price) || 0;
+    const customizedItemsPrice = customizedItems.reduce((total, item) => {
+      return total + (Number(item.itemPrice) || 0);
+    }, 0);
+    const totalBeforeDiscount = basePrice + customizedItemsPrice;
+    const discount =
+      (totalBeforeDiscount * (Number(discountPercentage) || 0)) / 100;
+    const finalPrice = totalBeforeDiscount - discount;
 
-  
+    setTotalPrice(finalPrice);
+
+    setData((prevData) => ({
+      ...prevData,
+      totalPrice: finalPrice, // Pass totalPrice to parent
+    }));
+  }, [price, discountPercentage, customizedItems]);
+
   return (
     <div className="flex flex-col p-4 border border-gray-200 rounded-lg">
       <h2 className="mb-4 text-xl font-bold text-gray-700">
@@ -89,6 +111,12 @@ const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems
         </button>
       </div>
 
+      {/* Display Total Price */}
+      <div className="mt-2 text-green-600">
+        <span >Total Price:</span>
+        <span >  <strong>Rs. {totalPrice}</strong></span>
+      </div>
+
       {customizedItems.length > 0 && (
         <div className="p-4 mt-4 border border-gray-300 rounded-lg">
           <h3 className="mb-2 text-lg font-semibold text-gray-800">
@@ -108,7 +136,9 @@ const CustomizedFoodItems = ({data, setData, customizedItems, setCustomizedItems
                 <tr key={index} className="border-b">
                   <td className="p-2 text-gray-600">{item.itemPart}</td>
                   <td className="p-2 text-gray-600">{item.itemName}</td>
-                  <td className="p-2 font-medium text-gray-800">${item.itemPrice}</td>
+                  <td className="p-2 font-medium text-gray-800">
+                    ${item.itemPrice}
+                  </td>
                   <td className="p-2">
                     <button
                       onClick={() => handleRemoveItem(index)}

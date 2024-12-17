@@ -25,54 +25,56 @@ const ListItems = () => {
 
   return (
     <div className="container p-4 mx-auto">
-      <h2 className="mb-4 text-2xl font-bold text-gray-700">All Foods List</h2>
+      <p className='2xl:text-[27px] text-[24px] text-[#FF4C00] font-bold'>All Food List</p>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+        <table className="w-full mt-2  border-separate border-spacing-[6px]">
           <thead>
-            <tr className="text-white bg-gray-800">
-              <th className="px-4 py-2 text-center">ID</th>
-              <th className="px-4 py-2 text-center">Image</th>
-              <th className="px-4 py-2 text-center">Name</th>
-              <th className="px-4 py-2 text-center">Category</th>
-              <th className="px-4 py-2 text-center">Description</th>
-              <th className="px-4 py-2 text-center">Price</th>
-              <th className="px-4 py-2 text-center">Delivery Fee</th>
-              <th className="px-4 py-2 text-center">Delivery Duration</th>
-              <th className="px-4 py-2 text-center">Custom Additions</th>
-              <th className="px-4 py-2 text-center">Action</th>
+            <tr className="text-sm font-medium text-center bg-[#878787AB]">
+              <th className="p-3 rounded-md">ID</th>
+              <th className="p-3 rounded-md">Image</th>
+              <th className="p-3 rounded-md">Name</th>
+              <th className="p-3 rounded-md">Category</th>
+              <th className="p-3 rounded-md">Description</th>
+              <th className="p-3 rounded-md">Total Price</th>
+              <th className="p-3 rounded-md">Discount</th>
+              <th className="p-3 rounded-md">Delivery Fee</th>
+              <th className="p-3 rounded-md">Delivery Duration</th>
+              <th className="p-3 rounded-md">Custom Additions</th>
+              <th className="p-3 rounded-md">Action</th>
             </tr>
           </thead>
           <tbody>
             {list.map((item, index) => (
               <tr
                 key={index}
-                className="transition-all duration-200 border-b hover:bg-gray-100"
+                className="transition-all duration-200 border-b hover:bg-yellow-200 text-sm font-medium  bg-[#D9D9D9]"
               >
                 {/* ID Column */}
-                <td className="px-4 py-2 font-semibold text-center text-gray-700">
+                <td className="p-3 rounded-md">
                   {String(index + 1).padStart(3, "0")}
                 </td>
 
-                <td className="px-4 py-2">
+                <td className="items-center p-3 rounded-md">
                   <img
                     src={`${url}/images/${item.image}`}
                     alt={item.name}
                     className="object-cover w-12 h-12 rounded"
                   />
                 </td>
-                <td className="px-4 py-2">{item.name}</td>
-                <td className="px-4 py-2">{item.category}</td>
-                <td className="px-4 py-2">{item.description}</td>
-                <td className="px-4 py-2 font-semibold text-green-600">
-                  ${item.price}
+                <td className="p-3 text-center rounded-md">{item.name}</td>
+                <td className="p-3 text-center rounded-md">{item.category}</td>
+                <td className="p-3 text-center rounded-md">{item.description}</td>
+                <td className="p-3 text-center text-green-600 rounded-md">
+                  Rs. {item.totalPrice}
                 </td>
-                <td className="px-4 py-2 text-center">{item.deliveryFee}</td>
-                <td className="px-4 py-2 text-center">
-                  {item.deliveryDuration}
+                <td className="p-3 text-center rounded-md">{item.discountPercentage}%</td>
+                <td className="p-3 text-center rounded-md">Rs. {item.deliveryFee}</td>
+                <td className="p-3 text-center rounded-md">
+                  Min-{item.deliveryDuration}
                 </td>
 
 
-                <td className="px-4 py-2">
+                <td className="p-3 rounded-md">
                   {item.customizedItems && item.customizedItems.length > 0 ? (
                     Array.isArray(item.customizedItems) ? (
                       // If customizedItems is an array of objects
@@ -128,14 +130,14 @@ const ListItems = () => {
                     )
                   ) : (
                     // Empty State
-                    <div className="p-2 text-red-400 rounded-md">
+                    <div className="p-2 text-center text-red-400 rounded-md">
                       No Custom Additions
                     </div>
                   )}
                 </td>
 
 
-                <td className="px-4 py-2">
+                <td className="p-3 rounded-md">
                   <div className="flex flex-col items-center space-y-2">
                     <button className="w-full px-3 py-1 text-white transition duration-200 bg-blue-500 rounded hover:bg-blue-600">
                       Edit
