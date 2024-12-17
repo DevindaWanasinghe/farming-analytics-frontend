@@ -12,12 +12,12 @@ import {
 
 const Sidebar = () => {
   return (
-    <div className="xl:w-[16%] bg-white min-h-[100vh] lg:w-[15%] md:w-[15%] sm:w-[14%]">
+    <div className=" bg-white min-h-[100vh] min-w-[215px]">
       <div className="mt-4">
         <NavLink
           to="/notifications"
           className={({ isActive }) =>
-            `rounded-[10px] m-8 mb-[10px] flex items-center p-4 cursor-pointer 
+            `rounded-[10px] m-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
           }
         >
@@ -27,7 +27,7 @@ const Sidebar = () => {
         <NavLink
           to="/add"
           className={({ isActive }) =>
-            `rounded-[10px] mx-8 mb-[10px] flex items-center p-4 cursor-pointer 
+            `rounded-[10px] mx-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
           }
         >
@@ -37,7 +37,7 @@ const Sidebar = () => {
         <NavLink
           to="/list"
           className={({ isActive }) =>
-            `rounded-[10px] mx-8 mb-[10px] flex items-center p-4 cursor-pointer 
+            `rounded-[10px] mx-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
           }
         >
@@ -47,7 +47,7 @@ const Sidebar = () => {
         <NavLink
           to="/orders"
           className={({ isActive }) =>
-            `rounded-[10px] mx-8 mb-[-20px] flex items-center p-4 cursor-pointer 
+            `rounded-[10px] mx-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
           }
         >
@@ -57,7 +57,7 @@ const Sidebar = () => {
         <NavLink
           to="/revenue"
           className={({ isActive }) =>
-            `rounded-[10px] m-8 mb-[-20px] flex items-center p-4 cursor-pointer 
+            `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
           }
         >
@@ -67,7 +67,7 @@ const Sidebar = () => {
         <NavLink
           to="/admin"
           className={({ isActive }) =>
-            `rounded-[10px] m-8 mb-[-20px] flex items-center p-4 cursor-pointer 
+            `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
           }
         >
@@ -77,7 +77,7 @@ const Sidebar = () => {
         <NavLink
           to="/custom"
           className={({ isActive }) =>
-            `rounded-[10px] m-8 mb-[-20px] flex items-center p-4 cursor-pointer 
+            `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
           }
         >
