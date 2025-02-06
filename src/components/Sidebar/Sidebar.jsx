@@ -12,10 +12,10 @@ import {
 
 const Sidebar = () => {
   return (
-    <div className=" bg-white min-h-[100vh] min-w-[215px]">
+    <div className=" bg-white min-h-[100vh] min-w-[215px] fixed top-10 left-0 z-48">
       <div className="mt-4">
         <NavLink
-          to="/notifications"
+          to="/dashboard/notifications"
           className={({ isActive }) =>
             `rounded-[10px] m-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
@@ -25,7 +25,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/add"
+          to="/dashboard/add"
           className={({ isActive }) =>
             `rounded-[10px] mx-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
@@ -35,7 +35,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/list"
+          to="/dashboard/list"
           className={({ isActive }) =>
             `rounded-[10px] mx-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
@@ -45,7 +45,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/orders"
+          to="/dashboard/orders"
           className={({ isActive }) =>
             `rounded-[10px] mx-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
@@ -55,7 +55,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/revenue"
+          to="/dashboard/revenue"
           className={({ isActive }) =>
             `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
@@ -65,7 +65,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/admin"
+          to="/dashboard/admin"
           className={({ isActive }) =>
             `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
@@ -75,7 +75,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/custom"
+          to="/dashboard/custom"
           className={({ isActive }) =>
             `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
             ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
