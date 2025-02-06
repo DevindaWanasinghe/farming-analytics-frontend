@@ -115,7 +115,7 @@ const AddItems = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 bg-white">
+    <div className="flex items-center justify-center min-h-screen p-4 mt-10 bg-white">
       {/* Outer Container */}
       <div className="w-full h-screen max-w-6xl overflow-auto bg-white rounded-lg ">
         {/* Form Header */}
