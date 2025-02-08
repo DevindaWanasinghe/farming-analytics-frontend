@@ -28,24 +28,24 @@ ChartJS.register(
 
 const Dashboard = () => {
   // Sample orders data
-  const orders = [
-    {
-      orderId: "ORD001",
-      customerName: "W.B.W.R.M.M.S. Aluwihare",
-      dateAndTime: "Sat Oct 19, 2024 7:43",
-      totalAmount: 2500.5,
-      status: "Pending",
-      payment: "Paid",
-    },
-    {
-      orderId: "ORD002",
-      customerName: "Chalitha Aluwihare",
-      dateAndTime: "Sat Oct 20, 2024 8:30",
-      totalAmount: 2900.5,
-      status: "Completed",
-      payment: "Unpaid",
-    },
-  ];
+  // const orders = [
+  //   {
+  //     orderId: "ORD001",
+  //     customerName: "W.B.W.R.M.M.S. Aluwihare",
+  //     dateAndTime: "Sat Oct 19, 2024 7:43",
+  //     totalAmount: 2500.5,
+  //     status: "Pending",
+  //     payment: "Paid",
+  //   },
+  //   {
+  //     orderId: "ORD002",
+  //     customerName: "Chalitha Aluwihare",
+  //     dateAndTime: "Sat Oct 20, 2024 8:30",
+  //     totalAmount: 2900.5,
+  //     status: "Completed",
+  //     payment: "Unpaid",
+  //   },
+  // ];
 
   // Sample reviews data
   const reviews = [
@@ -68,11 +68,11 @@ const Dashboard = () => {
 
   // Revenue Chart Data
   const revenueData = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["January", "February", "March", "April", "May", "June","July","August","September","October","November","December"],
     datasets: [
       {
         label: "Revenue (LKR)",
-        data: [12000, 15000, 10000, 22000, 18000, 25000],
+        data: [12000, 15000, 10000, 22000, 18000, 25000,12000, 15000, 10000, 22000, 18000, 25000],
         borderColor: "rgba(75,192,192,1)",
         backgroundColor: "rgba(75,192,192,0.2)",
         fill: true,
@@ -82,12 +82,12 @@ const Dashboard = () => {
 
   // Orders Chart Data
   const orderData = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["January", "February", "March", "April", "May", "June","July","August","September","October","November","December"],
     datasets: [
       {
         label: "Orders",
-        data: [30, 50, 40, 70, 60, 90],
-        backgroundColor: ["#4CAF50", "#FFA500", "#2196F3", "#FF5733", "#9C27B0", "#E91E63"],
+        data: [30, 50, 40, 70, 60, 90,70,30,55,50,60,70],
+        backgroundColor: ["#4CAF50", "#FFA500", "#2196F3", "#FF5733", "#9C27B0", "#E91E63","#4CAF50", "#FFA500", "#2196F3", "#FF5733", "#9C27B0", "#E91E73"],
       },
     ],
   };
@@ -98,10 +98,21 @@ const Dashboard = () => {
     datasets: [
       {
         label: "User Reviews",
-        data: [3, 1, 5, 8, 10],
+        data: [3, 70, 50, 200, 130],
         borderColor: "rgba(255, 99, 132, 1)",
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         fill: true,
+      },
+    ],
+  };
+
+  const foodData = {
+    labels: ["Pizza", "Burger", "Pasta", "Sushi", "Tacos", "Salad", "Fried Rice", "Steak", "Biryani", "Noodles"],
+    datasets: [
+      {
+        label: "Top Selling Food Items",
+        data: [120, 90, 80, 70, 95, 85, 110, 65, 100, 75], // Example order counts
+        backgroundColor: ["#4CAF50", "#FFA500", "#2196F3", "#FF5733", "#9C27B0", "#E91E63", "#4CAF50", "#FFA500", "#2196F3", "#FF5733"],
       },
     ],
   };
@@ -132,6 +143,13 @@ const Dashboard = () => {
           <CardContent>
             <h2 className="mb-4 text-xl font-semibold">User Reviews Overview</h2>
             <Line data={reviewData} />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <h2 className="mb-4 text-xl font-semibold">Top Selling Food Items</h2>
+            <Bar data={foodData} />
           </CardContent>
         </Card>
       </div>

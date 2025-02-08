@@ -9,6 +9,7 @@ import { IoMdCheckmarkCircle } from "react-icons/io";
 import api from "../../services/api.js";
 import { io } from "socket.io-client";
 
+
 const OrderList = () => {
   const [omgDetails,setomgDetails] = useState([]);
   const [expandedRow, setExpandedRow] = useState(null);
@@ -18,8 +19,6 @@ const OrderList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const socket = useMemo(() => io("http://localhost:3001"), []);
-
-  
 
 
   const fetchOrders = async () => {
@@ -63,32 +62,35 @@ useEffect(()=>{
 },[]);
 
 const updateOrderStatus = async (orderId, status) => {
-    try {
-        setLoading(true);
-        const token = localStorage.getItem("accessToken");
-        if (!token) throw new Error("User is not authenticated.");
+  console.log(orderId,status);
+  try {
+      setLoading(true);
+      const token = localStorage.getItem("accessToken");
+      if (!token) throw new Error("User is not authenticated.");
 
-        const response = await api.put(
-            `/order/${orderId}/status`,  // RESTful API path
-            { status },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+      const response = await api.put(
+          "/order/updateorderstatus",
+          { orderId, status },
+          {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type": "application/json",
+              },
+          }
+      );
+      console.log(response)
 
-        if (response.status === 200 && response.data.status === "sucsess") {
-            fetchOrders(); // Refresh order list
-        } else {
-            throw new Error("Failed to update order status.");
-        }
-    } catch (error) {
-        console.error("API Error:", error.message);
-    } finally {
-        setLoading(false);
-    }
+      if (response.status === 200 && response.data.status === "sucsess") { // Fixed typo
+          fetchOrders();
+      } else {
+          throw new Error("Failed to update order status.");
+      }
+  } catch (error) {
+      console.error("API Error:", error.message);
+      fetchOrders();
+  } finally {
+      setLoading(false);
+  }
 };
 
   const toggleRow = (index) => {
@@ -344,7 +346,7 @@ const updateOrderStatus = async (orderId, status) => {
                                 {getStatusIcon(status)}
                                 </div>
                               </div>
-                              <button onClick={()=>{updateState(index,status); updateOrderStatus(order._id)}} disabled={order.status === "Cancelled" ? true : false} className='flex mt-2 min-w-[144px] h-[38px] bg-[#FF4C00] p-2 rounded-md text-white items-center justify-center hover:bg-[#ff4d00b8]'>Save Changes</button>
+                              <button onClick={()=>{updateState(index,status); updateOrderStatus(order._id,status)}} disabled={order.status === "Cancelled" ? true : false} className='flex mt-2 min-w-[144px] h-[38px] bg-[#FF4C00] p-2 rounded-md text-white items-center justify-center hover:bg-[#ff4d00b8]'>Save Changes</button>
                             </div>
                             
                           </div>
@@ -365,7 +367,7 @@ const updateOrderStatus = async (orderId, status) => {
                   
                 )
               })}
-                  
+                 {loading ? <img src=""></img> : null } 
             </tbody>
           </table>
         </div>
