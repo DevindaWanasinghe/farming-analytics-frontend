@@ -36,8 +36,11 @@ const VerifyEmail = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("handleSubmit triggered verified");  
+   
 
     if (!formData.email || validateCode(formData.code) !== "valid") {
+      // console.log("Validation failed:", formData);
       setErrors({
         email: !formData.email ? "Email is required." : "",
         code: validateCode(formData.code) !== "valid" ? validateCode(formData.code) : "",
@@ -48,15 +51,21 @@ const VerifyEmail = () => {
     setLoading(true);
 
     try {
+      // console.log("Form Data dd:", formData); // Log form data for debugging
+
       const response = await axios.post(
-        "http://localhost:3001/api/admin/verifyemail",
+        "http://localhost:3001/api/auth/verifyemail",
         formData,
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
+        
       );
+     
+
+      // console.log("Backend response:", response);
 
       if (response.status === 200 && response.data.status === "sucsess") {
         toast.success("Verification successful!", { autoClose: 1500 });

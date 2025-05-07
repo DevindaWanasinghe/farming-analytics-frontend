@@ -17,12 +17,12 @@ const Navbar = () => {
   };
   const isLoggedIn = localStorage.getItem("login") === "true" ? true : false;
   return (
-    <div className="  p-4 flex justify-between items-center max-h-[55px] bg-[#FF4C00] fixed  w-full  z-50">  	
+    <div className="  p-4 flex justify-between items-center max-h-[55px] bg-green-500 fixed  w-full  z-50">  	
       <p
               href="#"
               className="flex items-center justify-center ml-4 text-2xl font-bold text-white" // Reduced font size
             >
-              Uni<p className="text-black">Feast</p>
+              GO<p className="text-[33px] text-black mb-[8px]">වියා.lk</p>
             </p>
 
       {!isLoggedIn ? (

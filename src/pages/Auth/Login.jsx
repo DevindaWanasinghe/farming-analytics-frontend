@@ -70,9 +70,9 @@ const Login = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
       <div className="w-full max-w-sm p-8 rounded-md shadow-lg">
         <h1 className="mb-2 text-2xl font-bold text-center text-gray-900">
-          Log in to UniFeast Admin Panel
+          Log in to Goviya Admin Panel
         </h1>
-        <p className="mb-6 font-semibold text-center text-orange-500">
+        <p className="mb-6 font-semibold text-center text-green-500">
           Super Admin and Admin Secure Login Portal
         </p>
 
@@ -80,7 +80,7 @@ const Login = () => {
           name="role"
           value={formData.role}
           onChange={handlechange}
-          className="w-full p-3 mb-4 text-gray-900 border border-orange-500 rounded-md focus:ring-2 focus:ring-orange-400"
+          className="w-full p-3 mb-4 text-gray-900 border border-green-500 rounded-md focus:ring-2 focus:ring-green-400"
         >
           <option value="admin">Admin</option>
           <option value="super-admin">Super Admin</option>
@@ -90,7 +90,7 @@ const Login = () => {
           type="email"
           name="email"
           placeholder="Enter email"
-          className="w-full p-3 mb-4 border border-gray-300 rounded-md appearance-none focus:ring-2 focus:ring-orange-400"
+          className="w-full p-3 mb-4 border border-gray-300 rounded-md appearance-none focus:ring-2 focus:ring-green-400"
           autoComplete="off"
           onChange={handlechange}
         />
@@ -101,13 +101,26 @@ const Login = () => {
           </div>
         )}
 
-        <div className="relative mb-4 ">
+        <div className="relative pb-2 ">
           <input
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Enter password"
-            className="w-full p-3 pr-10 border border-gray-300 rounded-md appearance-none focus:ring-2 focus:ring-orange-400"
+            className="w-full p-3 pr-10 mb-4 border border-gray-300 rounded-md appearance-none focus:ring-2 focus:ring-green-400"
             autoComplete="new-password"
+            style={{
+              appearance: "none !important",
+              WebkitAppearance: "none !important",
+              MozAppearance: "none !important",
+            }}
+            onChange={handlechange}
+          />
+            <input
+            type={showPassword ? "text" : "password"}
+            name="mobile number"
+            placeholder="Mobile Number"
+            className="w-full p-3 pb-3 pr-10 border border-gray-300 rounded-md appearance-none focus:ring-2 focus:ring-green-400"
+            autoComplete=""
             style={{
               appearance: "none !important",
               WebkitAppearance: "none !important",
@@ -132,20 +145,20 @@ const Login = () => {
         {loading ? (
           <button
             disabled
-            className="bg-orange-500 w-full h-[45px] text-white font-bold rounded-md flex items-center justify-center"
+            className="bg-green-500 w-full h-[45px] text-white font-bold rounded-md flex items-center justify-center"
           >
             Logging in...
           </button>
         ) : (
           <button
             onClick={handleSubmit}
-            className="bg-orange-500 w-full h-[45px] text-white hover:bg-orange-600 font-bold rounded-md"
+            className="bg-green-500 w-full h-[45px] text-white hover:bg-green-600 font-bold rounded-md"
           >
             Login
           </button>
         )}
 
-        <p onClick={() => navigate("/signin")} className="mt-4 text-center text-orange-500 cursor-pointer">
+        <p onClick={() => navigate("/signin")} className="mt-4 text-center text-green-400 cursor-pointer">
           Super Admin Sign In
         </p>
       </div>

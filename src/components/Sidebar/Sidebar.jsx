@@ -18,7 +18,7 @@ const Sidebar = () => {
           to="/dashboard/notifications"
           className={({ isActive }) =>
             `rounded-[10px] m-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
-            ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
+            ${isActive ? "bg-green-500 text-white" : "bg-[#D9D9D9] hover:bg-green-600 hover:text-white"}`
           }
         >
           <FaBell className="mr-2" /> Notifications
@@ -28,7 +28,7 @@ const Sidebar = () => {
           to="/dashboard/add"
           className={({ isActive }) =>
             `rounded-[10px] mx-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
-            ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
+            ${isActive ? "bg-green-500 text-white" : "bg-[#D9D9D9] hover:bg-green-600 hover:text-white"}`
           }
         >
           <FaPlus className="mr-2" /> Add Items
@@ -38,7 +38,7 @@ const Sidebar = () => {
           to="/dashboard/list"
           className={({ isActive }) =>
             `rounded-[10px] mx-8 mb-[10px] flex items-center py-4 pl-2 cursor-pointer 
-            ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
+            ${isActive ? "bg-green-500 text-white" : "bg-[#D9D9D9] hover:bg-green-600 hover:text-white"}`
           }
         >
           <FaThList className="mr-2" /> List Items
@@ -48,7 +48,7 @@ const Sidebar = () => {
           to="/dashboard/orders"
           className={({ isActive }) =>
             `rounded-[10px] mx-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
-            ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
+            ${isActive ? "bg-green-500 text-white" : "bg-[#D9D9D9] hover:bg-green-600 hover:text-white"}`
           }
         >
           <FaList className="mr-2" /> Order List
@@ -58,7 +58,7 @@ const Sidebar = () => {
           to="/dashboard/revenue"
           className={({ isActive }) =>
             `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
-            ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
+            ${isActive ? "bg-green-500 text-white" : "bg-[#D9D9D9] hover:bg-green-600 hover:text-white"}`
           }
         >
           <FaChartLine className="mr-2" /> Revenue
@@ -68,7 +68,7 @@ const Sidebar = () => {
           to="/dashboard/admin"
           className={({ isActive }) =>
             `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
-            ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
+            ${isActive ? "bg-green-500 text-white" : "bg-[#D9D9D9] hover:bg-green-600 hover:text-white"}`
           }
         >
           <FaUserCog className="mr-2" /> Admin Manage
@@ -78,7 +78,7 @@ const Sidebar = () => {
           to="/dashboard/custom"
           className={({ isActive }) =>
             `rounded-[10px] m-8 mb-[-20px] flex items-center py-4 pl-2 cursor-pointer 
-            ${isActive ? "bg-[#FF4C00] text-white" : "bg-[#D9D9D9] hover:bg-[#FF4C00] hover:text-white"}`
+            ${isActive ? "bg-green-500 text-white" : "bg-[#D9D9D9] hover:bg-green-600 hover:text-white"}`
           }
         >
           <FaTools className="mr-2" /> Custom Update
